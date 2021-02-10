@@ -2,6 +2,13 @@ const logger = require('../../services/logger.service')
 const userService = require('../user/user.service')
 const postService = require('./posts.service')
 
+module.exports = {
+    getPosts: getPosts,
+    deletePost,
+    addPost: addPost,
+    updatePost
+}
+
 async function getPosts(req, res) {
     try {
         const posts = await postService.query(req.query)
@@ -36,8 +43,15 @@ async function addPost(req, res) {
     }
 }
 
-module.exports = {
-    getPosts: getPosts,
-    deletePost,
-    addPost: addPost
+async function updatePost(req, res) {
+    try {
+        const post = req.body
+        const savedPost = await postService.update(post)
+        console.log('postsController savedPost:', savedPost);
+        res.send(savedPost)
+    } catch (err) {
+        logger.error('Failed to update post', err)
+        res.status(500).send({ err: 'Failed to update post' })
+    }
 }
+

@@ -6,7 +6,7 @@ module.exports = {
     getCollection
 }
 
-const dbName = 'INSTA_APP_DB'
+const dbName = 'insta_db'
 
 var dbConn = null
 

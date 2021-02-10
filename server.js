@@ -52,10 +52,21 @@ app.get('/**', (req, res) => {
 })
 
 const logger = require('./services/logger.service')
+
 const port = process.env.PORT || 3030
 http.listen(port, () => {
     logger.info('Server is running on port: ' + port)
 })
 
+//////////////added by me
+// app.use(express.static('public'))
+// const port = process.env.PORT || 3030
+// app.get('/**', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'index.html'))
+// })
+
+// app.listen(port, () => {
+//     console.log(`App listening on  port ${port}!`);
+// })
 
 
